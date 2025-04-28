@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
-        <h1 className='text-8xl font-semibold text-primary'>Welcome.</h1>
-        <h2 className='text-6xl font-semibold text-secondary'>Type your query below</h2>
+    <div className="grid md:grid-rows-[20px_1fr_20px] md:items-center md:justify-items-center min-h-screen px-4 md:p-8 md:pb-20 md:gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-[32px] row-start-2 sm:items-start w-full">
+        <h1 className='text-6xl md:text-8xl font-semibold text-primary'>Welcome.</h1>
+        <h2 className='text-4xl md:text-6xl font-semibold text-secondary'>Type your query below</h2>
         <input
             id="inputBox"
             name="inputBox"
