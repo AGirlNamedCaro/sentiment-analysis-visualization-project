@@ -1,19 +1,14 @@
-import {useState} from "react";
+'use client'
+import {useEffect, useState} from "react";
 import axios from "axios";
+import {useResult} from "@/app/contexts/ResultContext";
 
 const Form = () => {
     const [prompt, setPrompt] = useState<string>("")
-    const [results, setResults] = useState<Array>([])
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        axios.post('/api/hugging_face', {text: prompt})
-            .then((res) => setResults(res.data))
-            .catch((err) => console.error(err))
-    }
+    const { handleSubmit, result } = useResult();
 
     return (
-        <form className='w-full' onSubmit={handleSubmit}>
+        <form className='w-full' onSubmit={(e) => handleSubmit(e,prompt)}>
             <h1 className='text-6xl md:text-8xl font-semibold text-primary'>Welcome.</h1>
             <h2 className='py-4 text-4xl md:text-6xl font-semibold text-secondary'>Type your query below</h2>
             <input
