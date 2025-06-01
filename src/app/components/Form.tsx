@@ -5,7 +5,7 @@ import {useResult} from "@/app/contexts/ResultContext";
 
 const Form = () => {
     const [prompt, setPrompt] = useState<string>("")
-    const { handleSubmit, result } = useResult();
+    const { handleSubmit, result, isLoading } = useResult();
 
     return (
         <form className='w-full' onSubmit={(e) => handleSubmit(e,prompt)}>

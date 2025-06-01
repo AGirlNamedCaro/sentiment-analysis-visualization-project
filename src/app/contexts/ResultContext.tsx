@@ -5,7 +5,7 @@ import axios from "axios";
 interface ResultContextType {
     result: Result | null
     setResult: React.Dispatch<React.SetStateAction<Result | null>>
-    loading: boolean,
+    isLoading: boolean,
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     handleSubmit: (prompt: string) => void
 }
@@ -19,19 +19,24 @@ const ResultContext = createContext<ResultContextType | undefined>(undefined);
 
 export const ResultProvider: React.FC<{children: React.ReactNode }> = ({children}) => {
     const [result, setResult] = useState<Result | null>(null)
-    const [loading, setIsLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleSubmit = (e,prompt) => {
         e.preventDefault()
+        setIsLoading(true)
         axios.post('/api/hugging_face', {text: prompt})
-            .then((res) => setResult(res.data))
+            .then((res) => {
+                    setResult(res.data)
+                    setIsLoading(false)
+                }
+            )
             .catch((err) => console.error(err))
     }
 
     const value = {
         result,
         setResult,
-        loading,
+        isLoading,
         setIsLoading,
         handleSubmit
     }
